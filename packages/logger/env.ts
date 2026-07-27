@@ -5,7 +5,9 @@ const envSchema = z.object({
     .enum(["development", "prod", "production"])
     .default("development"),
 
-  LOGGER_LEVEL: z.enum(["error", "debug", "info"]).optional(),
+  LOGGER_LEVEL: z
+    .enum(["error", "debug", "info"])
+    .optional(),
 });
 
 function createEnv(env: NodeJS.ProcessEnv) {

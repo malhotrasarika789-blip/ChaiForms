@@ -7,16 +7,28 @@ import {
   text,
 } from "drizzle-orm/pg-core";
 
+
 export const usersTable = pgTable("users", {
-  id: uuid("id").primaryKey().defaultRandom(),
 
-  fullName: varchar("full_name", { length: 80 }).notNull(),
+  id: uuid("id")
+    .primaryKey()
+    .defaultRandom(),
 
-  email: varchar("email", { length: 255 })
-    .notNull()
-    .unique(),
+  fullName: varchar("full_name", {
+    length: 80,
+  })
+  .notNull(),
 
-  password: varchar("password", { length: 255 }).notNull(),
+  email: varchar("email", {
+    length: 255,
+  })
+  .notNull()
+  .unique(),
+
+  password: varchar("password", {
+    length: 255,
+  })
+  .notNull(),
 
   emailVerified: boolean("email_verified")
     .default(false)
@@ -32,7 +44,9 @@ export const usersTable = pgTable("users", {
     .defaultNow()
     .$onUpdate(() => new Date())
     .notNull(),
+
 });
+
 
 export type SelectUser = typeof usersTable.$inferSelect;
 export type InsertUser = typeof usersTable.$inferInsert;

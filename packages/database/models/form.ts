@@ -5,9 +5,11 @@ import {
   text,
   timestamp,
   jsonb,
+  integer,
 } from "drizzle-orm/pg-core";
 
 import { usersTable } from "./user";
+
 
 export const formsTable = pgTable("forms", {
   id: uuid("id")
@@ -40,6 +42,10 @@ export const formsTable = pgTable("forms", {
     length: 20,
   })
     .default("UNLISTED")
+    .notNull(),
+
+  views: integer("views")
+    .default(0)
     .notNull(),
 
   theme: jsonb("theme"),

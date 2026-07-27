@@ -9,7 +9,6 @@ const TAGS = ["Forms"];
 const getPath = generatePath("/forms");
 
 export const formRouter = router({
-
   create: publicProcedure
     .meta({
       openapi: {
@@ -27,11 +26,8 @@ export const formRouter = router({
     )
     .output(z.any())
     .mutation(async ({ input }) => {
-
       const slug =
-        input.title
-          .toLowerCase()
-          .replace(/\s+/g, "-") +
+        input.title.toLowerCase().replace(/\s+/g, "-") +
         "-" +
         Date.now();
 
@@ -48,7 +44,6 @@ export const formRouter = router({
       return form;
     }),
 
-
   getById: publicProcedure
     .meta({
       openapi: {
@@ -64,7 +59,6 @@ export const formRouter = router({
     )
     .output(z.any())
     .query(async ({ input }) => {
-
       const [form] = await db
         .select()
         .from(formsTable)
@@ -72,5 +66,4 @@ export const formRouter = router({
 
       return form;
     }),
-
 });

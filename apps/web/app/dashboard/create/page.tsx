@@ -17,7 +17,7 @@ export default function CreateFormPage(){
 
     const [formTitle,setFormTitle] = useState("");
     const [description,setDescription] = useState("");
-    const [visibility,setVisibility] = useState("Public");
+    const [visibility,setVisibility] = useState("PUBLIC");
     const [theme,setTheme] = useState("Midnight");
     const [showTheme,setShowTheme] = useState(false);
     const [responseLimit,setResponseLimit] = useState("Unlimited");
@@ -53,7 +53,7 @@ const toggleRequired = (index:number) => {
 const publishForm = () => {
     const formData = {
         id:Date.now(),
-        title:formTitle || "Untitled Form",
+        title:formTitle,
         description,
         visibility,
         theme,
@@ -72,15 +72,25 @@ const publishForm = () => {
 };
 
 const previewForm = () => {
-    const data = {
-        title: formTitle || "Untitled Form",
-        description,
-        visibility,
-        theme,
-        questions
-    };
-    
-    localStorage.setItem("previewForm",JSON.stringify(data));
+    if(!formTitle.trim()){
+  alert("Please enter form title");
+  return;
+}
+
+const formData = {
+    id: Date.now(),
+    title: formTitle,
+    description,
+    visibility,
+    theme,
+    responseLimit,
+    status:"Published",
+    views:0,
+    responses:[],
+    questions,
+    createdAt:new Date().toISOString()
+};
+    localStorage.setItem("previewForm",JSON.stringify(formData));
     router.push("/forms/preview");
 };
 
@@ -154,8 +164,7 @@ className="mt-5 h-28 w-full rounded-xl bg-white/10 p-4 outline-none"/>
 
             <div className="mt-8">
                 <p className="mb-3 text-slate-300">Visibility</p>
-                <select value={visibility} onChange={(e) => setVisibility(e.target.value)}
-                className="w-full rounded-xl bg-[#0f172a] p-3">
+                <select value={visibility} onChange={(e)=>setVisibility(e.target.value)} className="w-full rounded-xl bg-[#0f172a] p-3">
                     <option value="PUBLIC">Public</option>
                     <option value="UNLISTED">Unlisted</option>
                     </select>

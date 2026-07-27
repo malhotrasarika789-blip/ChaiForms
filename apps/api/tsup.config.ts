@@ -2,13 +2,20 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: ["./src/index.ts"],
-  noExternal: ["@teachyst"], // transpile packages starting with `@teachyst` and their dependencies
-  splitting: false,
   bundle: true,
-  outDir: "./dist",
+  splitting: false,
   clean: true,
-  env: { IS_SERVER_BUILD: "true" },
-  loader: { ".json": "copy" },
-  minify: true,
+  outDir: "./dist",
+  format: ["cjs"],
+  target: "node20",
   sourcemap: false,
+  minify: true,
+  loader: {
+    ".json": "copy",
+  },
+  noExternal: [
+    "@repo/logger",
+    "@repo/trpc",
+    "@repo/database",
+  ],
 });

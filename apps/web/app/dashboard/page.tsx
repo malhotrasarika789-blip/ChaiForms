@@ -125,7 +125,7 @@ export default function DashboardPage(){
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">My Forms</h2>
               <div className="flex gap-4">
-                <Link href="/explore"  className="text-indigo-400">Explore</Link>
+                <Link href="/dashboard/explore"  className="text-indigo-400">Explore</Link>
                 <Link href="/dashboard/forms"  className="text-indigo-400">View All</Link>
                 </div>
                 </div>
@@ -139,6 +139,7 @@ export default function DashboardPage(){
                 <div key={form.id} className="rounded-2xl border border-white/10 bg-white/5 p-6">
                   <h3 className="text-xl font-semibold">{form.title}</h3>
                   <p className="text-slate-400 mt-2">{form.description}</p>
+
                   <div className="mt-4 space-y-2 text-sm">
                     <p>Status:<span className="text-green-400 ml-2">{form.status || "Published"}</span></p>
                     <p>Visibility:<span className="text-indigo-400 ml-2">{form.visibility}</span></p>
@@ -206,15 +207,21 @@ export default function DashboardPage(){
               </section>
               
             <section className="mt-12">
-              <h2 className="text-2xl font-bold">Explore Templates</h2>
-              <div className="grid md:grid-cols-5 gap-4 mt-5">
-                {templates.map(temp => (
-                  <div key={temp} className="rounded-xl border border-white/10 bg-white/5 p-5 hover:border-indigo-500 cursor-pointer">{temp}</div>
-                ))
-              }
-              
-            </div>
-            </section>
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold">Explore Templates</h2>
+                <Link href="/dashboard/explore" className="text-indigo-400 hover:text-indigo-300">
+                View All
+                </Link>
+                </div>
+                
+                <div className="grid md:grid-cols-5 gap-4 mt-5">
+                  {templates.map(temp => (
+                    <div key={temp} className="rounded-xl border border-white/10 bg-white/5 p-5 hover:border-indigo-500 cursor-pointer">
+                      {temp}
+                      </div>
+                    ))}
+                    </div>
+                    </section>
           </main>
         );
       }

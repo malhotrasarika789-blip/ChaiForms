@@ -12,13 +12,26 @@ export const usersTable = pgTable("users", {
 
   fullName: varchar("full_name", { length: 80 }).notNull(),
 
-  email: varchar("email", { length: 255 }).notNull().unique(),
-  emailVerified: boolean("email_verified").default(false),
+  email: varchar("email", { length: 255 })
+    .notNull()
+    .unique(),
+
+  password: varchar("password", { length: 255 }).notNull(),
+
+  emailVerified: boolean("email_verified")
+    .default(false)
+    .notNull(),
 
   profileImageUrl: text("profile_image_url"),
 
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").$onUpdate(() => new Date()),
+  createdAt: timestamp("created_at")
+    .defaultNow()
+    .notNull(),
+
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
 });
 
 export type SelectUser = typeof usersTable.$inferSelect;

@@ -151,14 +151,16 @@ className="mt-5 h-28 w-full rounded-xl bg-white/10 p-4 outline-none"/>
         <div className="sticky top-6 rounded-3xl border border-white/10 bg-white/5 p-6">
         <h2 className="flex items-center gap-2 text-xl font-bold">
             <Settings/>Form Settings</h2>
+
             <div className="mt-8">
                 <p className="mb-3 text-slate-300">Visibility</p>
                 <select value={visibility} onChange={(e) => setVisibility(e.target.value)}
                 className="w-full rounded-xl bg-[#0f172a] p-3">
-                    <option>Public</option>
-                    <option>Unlisted</option>
+                    <option value="PUBLIC">Public</option>
+                    <option value="UNLISTED">Unlisted</option>
                     </select>
                 </div>
+
             <div className="mt-8">
                 <p className="mb-3 text-slate-300">Theme</p>
                 <button onClick={() => setShowTheme(!showTheme)} className="flex w-full justify-between rounded-xl bg-[#0f172a] p-3">

@@ -124,8 +124,11 @@ export default function DashboardPage(){
             
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">My Forms</h2>
-              <Link href="/dashboard/forms" className="text-indigo-400">View All</Link>
-              </div>
+              <div className="flex gap-4">
+                <Link href="/explore"  className="text-indigo-400">Explore</Link>
+                <Link href="/dashboard/forms"  className="text-indigo-400">View All</Link>
+                </div>
+                </div>
               
             <div className="grid md:grid-cols-3 gap-5 mt-5">
               {forms.length===0 ?
@@ -140,6 +143,7 @@ export default function DashboardPage(){
                     <p>Status:<span className="text-green-400 ml-2">{form.status || "Published"}</span></p>
                     <p>Visibility:<span className="text-indigo-400 ml-2">{form.visibility}</span></p>
                     <p>Responses:<span className="ml-2">{form.responses?.length || 0}</span></p>
+                    <p>Views:<span className="ml-2">{form.views || 0}</span></p>
                     </div>
                     
                   <div className="flex gap-3 mt-6">

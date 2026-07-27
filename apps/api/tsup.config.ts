@@ -1,15 +1,22 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/index.ts"],
+  entry: ["./src/index.ts"],
   bundle: true,
   splitting: false,
   sourcemap: false,
   clean: true,
-  outDir: "dist",
+  outDir: "./dist",
+
   noExternal: [
     "@repo/logger",
     "@repo/trpc",
     "@repo/database"
   ],
+
+  external: [
+    "bcrypt"
+  ],
+
+  target: "node24",
 });

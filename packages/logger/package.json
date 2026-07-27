@@ -2,12 +2,20 @@
   "name": "@repo/logger",
   "version": "1.0.0",
   "private": true,
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./index.ts"
+    ".": {
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "scripts": {},
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup index.ts --format cjs"
+  },
   "dependencies": {
     "winston": "^3.19.0",
     "zod": "^4.3.5"
@@ -15,6 +23,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   }
 }

@@ -5,7 +5,7 @@ A full-stack form builder SaaS application where users can create custom forms, 
 ## 🌐 Live Demo
 
 Frontend:
-https://chai-forms-web-green.vercel.app
+https://chaiforms-app.vercel.app/
 
 Backend API:
 https://chaiforms-t269.onrender.com
